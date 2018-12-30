@@ -2,4 +2,16 @@
 <?eclipse-pydev version="1.0"?><pydev_project>
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Default</pydev_property>
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python interpreter</pydev_property>
+<pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
+<path>/${PROJECT_DIR_NAME}/EXAMPLES</path>
+<path>/${PROJECT_DIR_NAME}/src</path>
+<path>/${PROJECT_DIR_NAME}/src/improve</path>
+<path>/${PROJECT_DIR_NAME}/src/removing</path>
+<path>/${PROJECT_DIR_NAME}/src/rules</path>
+<path>/${PROJECT_DIR_NAME}/src/simplify</path>
+<path>/${PROJECT_DIR_NAME}/src/sorting</path>
+<path>/${PROJECT_DIR_NAME}/src/system</path>
+<path>/${PROJECT_DIR_NAME}/src/table</path>
+<path>/${PROJECT_DIR_NAME}/src/utility</path>
+</pydev_pathproperty>
 </pydev_project>
