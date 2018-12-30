@@ -217,7 +217,7 @@ class Iterative(Enumerative):
             #print ("is not obvious")
             ### check safe unsafe 
             if (self.is_unsafe(conds, concs)):
-                # TODO ?
+                # test strange case
                 if (self.is_strange(conds)):
                     print ("Strange: " + str(binary))
                 else:
@@ -261,8 +261,6 @@ class Iterative(Enumerative):
             rprime = And(rprime, self.z3_unsafe())
         if (self.variables):
             rprime = ForAll(self.variables, rprime)
-#         if (not isinstance(rprime, bool)):
-#             self.solver.add(rprime)
         self.solver.add(rprime)
         print (" <= " + str(self.solver.check()))
     # ----- end check
@@ -283,7 +281,7 @@ class Iterative(Enumerative):
     # check req against Safe(R)
     # req with free variables and return the states
     # defined = both are sat
-    # TODO not correct ? U is ?*
+    # TODO req should be closed 
     def check2safe(self, req):
         self.solver.reset()
         if (self.variables):

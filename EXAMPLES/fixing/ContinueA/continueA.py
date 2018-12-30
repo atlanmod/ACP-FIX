@@ -158,8 +158,7 @@ table.add_rule(And(MeetingFlag(R), pcmember(X)), Pread(X, R))
 #======================================
 start = process_time()
 size = 47 
-table.analyze()
-#print(str(table))
+#table.analyze()
 table.compute_table(size) # needed for sorting numbers
 #print(str(table))
 print ( " safe= " + str(len(table.safe)) + " unsafe= " + str(len(table.unsafe)) )

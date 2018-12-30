@@ -7,8 +7,6 @@ from z3 import * #@UnusedWildImport
 from z3.z3util import * #@UnusedWildImport
 from MoreUtility import * #@UnusedWildImport
 
-# TODO move in utility ...
-
 # --------------------
 # conversion to TSPASS for a BoolRef
 # requires self:BoolRef

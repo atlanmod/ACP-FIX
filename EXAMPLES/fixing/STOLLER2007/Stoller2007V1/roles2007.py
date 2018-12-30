@@ -69,7 +69,6 @@ table.add_rule(And(Nurse(T, X), Doctor(T, X)), False) #10
 #### ---
 start = clock()
 size = 8+3
-table.analyze()
 table.compute_table(size) ### with Improve !
 #print ("rules= " + str(len(table.correct)) + " safe= " + str(len(table.safe)) + " unsafe= " + str(len(table.unsafe)))
 #print(str(table))

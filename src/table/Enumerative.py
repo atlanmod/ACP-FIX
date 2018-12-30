@@ -12,7 +12,6 @@ from math import * #@UnusedWildImport
 
 # --------------------------
 # Class for Table inheriting rule set 
-# TODO simplification of expressions check True and False ?
 class Enumerative(RuleSet):
     
     # --------------------
@@ -315,7 +314,7 @@ class Enumerative(RuleSet):
     # --- end is_obvious  
 
     # --------------------
-    # TODO new test for problem
+    # new test for problem to avoid tautology in unsafe
     def is_strange(self, conds):
         #print ("is strange" + str(conds))
         self.solver.reset()
@@ -335,7 +334,7 @@ class Enumerative(RuleSet):
         #print (" ? " + str(self.solver.check().__eq__(unsat)))
         return self.solver.check().__eq__(unsat)
     # --- end is_strange
-    
+     
     # --------------------
     # test tautology 
     # with free variables
@@ -419,8 +418,6 @@ class Enumerative(RuleSet):
                 self.solver.add(And(cond, conc))
             return self.solver.check().__eq__(unsat)
     # --- end is_unsafe   
-    
-    
     
     # ----------------------
     # check if exp is undefined for the rule system

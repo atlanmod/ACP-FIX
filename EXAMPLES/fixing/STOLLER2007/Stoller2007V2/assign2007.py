@@ -107,7 +107,6 @@ table.add_rule(And(Manager(T, X), assign(T, X, Y)), MedicalTeam(T, Y)) #12
 # --------------------------------------------
 start = clock()
 size = 13
-table.analyze()
 table.compute_table(size) ### needed for mapping
 print ("rules= " + str(len(table.correct)) + " safe= " + str(len(table.safe)) + " unsafe= " + str(len(table.unsafe)) + " explicit= " + str(len(table.explicit)))
 print(" analysis time: " + str(floor(clock()-start)))

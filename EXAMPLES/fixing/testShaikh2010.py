@@ -50,7 +50,6 @@ table.add_rule(pdelete(A, D), administrator(A)) #7
 
 #### --------------- 
 size = 8 #
-table.analyze()
 table.compute_table(size)
 # print ("rules= " + str(len(table.correct)) + " safe= " + str(len(table.safe)) + " unsafe= " + str(len(table.unsafe)))
 #print (str(table))

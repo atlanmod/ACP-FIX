@@ -267,8 +267,7 @@ table.add_rule(And(ThirdParty(T, X), revoke(T, X, Y), (P < T), assign(P, X, Y), 
 # ### ===============
 start = clock()
 #size =  13 #23 # 60 # 7+3+13+13+24 # 8+3+13+13+24 # 13+13 #
-size =  60 # 23 #23 # 24+13 # 60  # 36 #
-table.analyze() 
+size =  60 
 table.compute_table(size) 
 #table.check(size)
 #print(str(table))

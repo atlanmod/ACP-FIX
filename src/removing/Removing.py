@@ -1,16 +1,13 @@
 # -------------------
-# 19/12/2018
+# 30/12/2018
 # Subclass for informations about analysis and fixing
 ### -------------
 
-### lookup-complex work with only universal but not good for safe healtcare
-### lookup-complex2 check CNS results seem good
-
-from Simplify import * #@UnusedWildImport
+from Improve import * #@UnusedWildImport
 
 # --------------------------
 # Class for rule simplification
-class Removing(Simplify):
+class Removing(Improve):
     
     # --------------------
     # init constructor with sys: <= Iterative
@@ -77,13 +74,12 @@ class Removing(Simplify):
     # naive lookup for a minimal solution
     # bottom up enumeration of rule combinations 
     # test all combination on R_~F
-    # TODO use I_0 negatives 
     def naive(self, U, negatives, size):
         #print(" ---------- naive -------------")
-        # TODO maximal selection
-        #selection = range(size)
+        #  maximal selection
+        selection = range(size)
         # optimized selection with negatives
-        selection = [i for i in range(size) if i not in negatives]
+        #selection = [i for i in range(size) if i not in negatives]
         sizeS = len(selection)  #size
         found = False # additional condition
         sizeL = 1
@@ -99,20 +95,15 @@ class Removing(Simplify):
                 # test the current selection 
                 test = [selection[j] for j in K]
                 notest = [selection[j] for j in range(sizeS) if j not in K]
-                #print ("test " + str(test))
-                #compute R_F R_~F
-                #fixed = [self.rules[i].fix(U).toBoolRef() for i in test]
+                #compute R_~F
                 notfixed = [self.rules[i].toBoolRef() for i in notest]
-                #print ("F= " + str(test) + "~F= " + str(notest))   
                 # check satisfiability against U
                 self.solver.reset()
                 self.solver.add(U)
                 if (self.variables):
                     # only R_~F
-                    #self.solver.add(ForAll(self.variables, And(*(fixed + notfixed))))
                     self.solver.add(ForAll(self.variables, And(*notfixed)))
                 else:
-                    #self.solver.add(*(fixed+notfixed))
                     self.solver.add(*notfixed)
                 found = self.solver.check().__eq__(sat) 
                 # increment the k counter and check limit 
@@ -146,7 +137,7 @@ class Removing(Simplify):
         numbers = self.full_mapping(size) #PB with testAdi ?
         negatives = [numbers[i] for i in range(len(Ubinary)) if (Ubinary[i] == 0)]  
         positives = [numbers[i] for i in range(len(Ubinary)) if (Ubinary[i] == 1)]  
-        howmany = len([i for i in range(len(Ubinary)) if (Ubinary[i] != -1)])
+        #howmany = len([i for i in range(len(Ubinary)) if (Ubinary[i] != -1)])
         maxrun = 10
         # naive algorithm
         start = clock()
@@ -154,8 +145,6 @@ class Removing(Simplify):
             Fnaive = self.naive(U, negatives, size)
         # --- end naive
         naivetime = (clock() - start) / maxrun
-        #naivetime = (process_time() - start) / maxrun
-        perfnaive = 1/(len(Fnaive)*naivetime)
         # for lookup 
         start = clock()
         #start = process_time()
@@ -164,18 +153,10 @@ class Removing(Simplify):
             Fmin = self.lookup_unsafe(U, Ubinary, size)
         # --- end naive
         meantime = (clock() - start) / maxrun
-        #meantime = (process_time() - start) / maxrun
-        perflookup = 1/(len(Fmin)*meantime)
         # Compare BOTH
         print (str(number) + " ; " + str(len([i for i in Ubinary if i == 1])) + " ; " + str(Fnaive) + " ; " + str(naivetime) + " ; " + str(Fmin) + " ; " + str(meantime) + " ; " 
                + str(len(Fnaive)) + " ; " + str(len(Fmin))  + " ; " + str(len(Fnaive) - len(Fmin)) + " ; " + str((naivetime/meantime * 100)) + " ; "
-               #+ str(len([i for i in Fmin if i not in Fnaive])) + " ; " + str(len([i for i in Fnaive if i not in Fmin]))  + " ; " 
                + str(len(positives)) + " ; " + str(len(negatives)) + " ; " + str(size - len(positives) - len(negatives)))
-        # without NAIVE
-        #print (str(number) + " ; " + str(len([i for i in Ubinary if i == 1])) + " ; " + str(Fmin) + " ; " + str(meantime) + " ; " + str(len(Fmin))) 
-        ### only naive
-#         print (str(number) + " ; " + str(len([i for i in Ubinary if i == 1])) + " ; " + str(Fnaive) + " ; " + str(naivetime) +  str(len(Fnaive)) + " ; " 
-#                 + str(howmany))
     # --- end of compare
     
     # --------------------
@@ -221,7 +202,7 @@ class Removing(Simplify):
                     for i in I1_NOTF:
                         self.solver.add(ForAll(self.variables, self.rules[i].get_conc()))
                     found = self.solver.check().__eq__(sat)
-                    # TODO shortcut 
+                    # shortcut 
                     if found:
                         G_NOTF = [i for i in G if (i not in test)] 
                         for g in G_NOTF:
@@ -281,7 +262,7 @@ class Removing(Simplify):
     # bottom up enumeration of rule combinations
     # use a CNS checking for definedness 
     # with shortcut BUT U is an unsafe problem
-    # TODO ONLY for 1-undefined problem avoid checking U ???
+    # ONLY for unsafe problem 
     def lookup_unsafe(self, U, Ubinary, size):
         # mapping completed to simplify
         numbers = self.full_mapping(size)
@@ -305,18 +286,12 @@ class Removing(Simplify):
             while (k >= 0) and not found:
                 # test the current selection F
                 test = [selection[j] for j in K]
-                #print ("test " + str(test))
-                # universal conditions
-                #D_I_1 = And(*[self.rules[i].get_cond() for i in positives])
-                #NOTD_I_0 = And(*[Not(self.rules[i].get_cond()) for i in negatives])
                 # check universal complex with necessary check
                 I1_NOTF = [i for i in positives if i not in test]
                 self.solver.reset()
                 self.solver.add(U)
                 self.solver.push()
                 if (self.variables):
-                    #self.solver.add(ForAll(self.variables, D_I_1))                  
-                    #self.solver.add(ForAll(self.variables, NOTD_I_0))                  
                     for i in I1_NOTF:
                         self.solver.add(ForAll(self.variables, self.rules[i].get_conc()))
                     found = self.solver.check().__eq__(sat)
@@ -329,7 +304,6 @@ class Removing(Simplify):
                         found = self.solver.check().__eq__(sat)   
                     # check existential part  U & ?* ~(D_I1~D_I0) & R_~F
                     else:
-                        #print ("radix is ? = " + str(found))   
                         # compute R reduced to ~F !!! here all rules and not in F
                         notest = [j for j in range(size) if j not in test]
                         #print ("F= " + str(test) + "~F= " + str(notest))   
@@ -341,11 +315,8 @@ class Removing(Simplify):
                         self.solver.add(Exists(self.variables, Or(Not(D_I_1), Not(NOTD_I_0))))
                         self.solver.add(ForAll(self.variables, And(*R_NOTF)))
                         found = self.solver.check().__eq__(sat)
-                        #print ("found existential= " + str(found))
                 else:
                     # no variables
-                    #self.solver.add(D_I_1)                  
-                    #self.solver.add(NOTD_I_0)                       
                     for i in I1_NOTF:
                         self.solver.add(self.rules[i].get_conc())
                     found = self.solver.check().__eq__(sat)   
@@ -379,26 +350,6 @@ class Removing(Simplify):
         return test
     # --- end lookup_unsafe
     
-    # ------------------------
-    # compute a required selection for F 
-    # look at the sat of U !* (Di => Ci) unsat
-    # U is closed
-    def find_required(self, U, size):
-        # required set 
-        required = []
-        for i in range(size):
-            self.solver.reset()
-            self.solver.add(U)
-            if (self.variables):
-                self.solver.add(ForAll(self.variables, self.rules[i].z3()))
-            else:
-                self.solver.add(self.rules[i].z3())
-            if (self.solver.check().__eq__(unsat)):
-                required.append(i)
-        # --- end for
-        return required
-    # --- end find_required
-    
     # ----------------------
     # Fix multiple problems in conclusions, from a list of unsafe numbers ONLY
     # and generate a new rule system fixing all these problems minimally
@@ -420,7 +371,7 @@ class Removing(Simplify):
             else:
                 U = rule.get_cond()
             # --- quantifiers
-            fix = self.lookup_complex3(U, Ubinary, end)
+            fix = self.lookup_complex(U, Ubinary, end)
             lproblems.append(U)
             lfixes.append(fix)
         # --- end for 
@@ -439,4 +390,4 @@ class Removing(Simplify):
         return newR
     # --- end of fix_multiple
     
-# --- end class Fixing
+# --- end class Removing

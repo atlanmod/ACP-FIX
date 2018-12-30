@@ -2,7 +2,6 @@
 # 9/6/2018
 # Simple graph to topological sorting
 # -------------------
-# TODO impact of without conclusions ?
 
 # ------ 
 # Should store all the inclusions relations 

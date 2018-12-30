@@ -4,8 +4,6 @@
 #--------------------------
 from z3 import * #@UnusedWildImport
 
-# TODO faire ménage 
-
 #------------- tactic from Z3
 skip = Tactic('skip')
 nnf =Tactic('nnf')
@@ -194,7 +192,6 @@ def add_exp(list1, exp):
 # --- end add_exp
 
 # ---------------
-# OK mais pas cela
 # size(BoolRef or class bool) : compute nb of nodes
 def size_nodes(exp):
     #print ("size_nodes " + str(exp) + str(type(exp)) + str(is_int(exp)))

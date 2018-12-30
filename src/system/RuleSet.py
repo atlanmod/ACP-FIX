@@ -11,7 +11,6 @@ from Rule import * #@UnusedWildImport
 
 # ---------------------
 # self.variables: universally quantified
-# TODO ajouter aussi les skolem explicites !!!!
 class RuleSet():
     
     # by default it is True

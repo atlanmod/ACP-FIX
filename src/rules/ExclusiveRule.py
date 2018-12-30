@@ -30,7 +30,7 @@ class ExclusiveRule(Rule):
     # --- end get_binary
     
     # --------------------
-    # TODO erreurs ?
+    # TODO errors
     # return an BoolRef
     def get_cond(self):
         if (isinstance(self.cond, bool)):
@@ -74,7 +74,6 @@ class ExclusiveRule(Rule):
     # --------------------
     # redefine Z3 BoolRef generation
     # attention False possible
-    # TODO simplification ?
     def z3(self):
         D = self.get_cond()
         C = self.get_conc()
