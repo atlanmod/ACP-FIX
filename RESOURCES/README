@@ -1,14 +1,45 @@
-%%%% 19/6/2019
+%%%% 20/6/2019
+Removing Problems in Rule-Based Policies
+IFIP SEC Lisbonn 2019
+
 %%%% Examples and source code prototype for the removing process
 
-main.pdf is the companion paper with full proofs
+========== Requirements
 
-EXAMPLE/* contains some examples mainly an ARBAC and an ABAC ones
+    Python v.3.7
+    Z3 v.4.6
+    Z3py
+
+========== How to use
+
+SEE EXAMPLES/STOLLER2007/Stoller2007V1/roles2007.py
+
+use compute_table(size) to get the enumerative results
+then choose some problems and the binary chracteristic
+ex
+### second
+U2 = Exists(table.variables, And(Not(And(Patient(T, X), PrimaryDoctor(T, X))), And(Receptionist(T, X), Doctor(T, X))))
+UB2 = [0, 1] 
+and use  print(str(table.lookup_complex(U2, UB2, size))) to get the F selection
+
+========== Repository structure
+
+RESOURCES/
+
+main.pdf is the companion paper with full proofs
+slides.pdf the talk
+
+EXAMPLES/ contains some examples mainly an ARBAC and an ABAC ones
 
 src/ contains the same base code than ACP (https://github.com/atlanmod/ACP) which defines the enumerative approach
 but few changes and corrections have been done
 src/improve and src/removing are new source codes for the removing process
 
+========== Contacts
 
-TODO commit after tests
-TODO clean up code, remove simplify !!!
+    Zheng Cheng: zheng.cheng@imt-atlantique.fr
+
+    Jean-Claude Royer: jean-claude.royer@imt-atlantique.fr
+
+    Massimo Tisi: massimo.tisi@imt-atlantique.fr
+
