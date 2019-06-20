@@ -16,7 +16,7 @@ Python3 by JCR
 '''
 
 # TODO clean up etc 
-# TODO deactivate essential computation
+# deactivate essential computation
 
 # ------------
 import itertools

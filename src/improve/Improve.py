@@ -113,7 +113,7 @@ class Improve(Sorting):
         # iterative process for each  rules
         for j in range(1, size):
             rule = rules[j]
-            #print ("----------  with rule " + str(j) + " = " + str(rule))
+            print ("----------  with rule " + str(j) + " = " + str(rule))
             new = rule.get_cond()
             if (isinstance(new, bool)):
                 negnew = not new

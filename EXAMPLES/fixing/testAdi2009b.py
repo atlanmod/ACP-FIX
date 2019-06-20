@@ -52,7 +52,7 @@ table.add_rule(chief(h), pread(h, p))
 #### ---------------
 # start = clock()
 size = 5
-table.analyze()
+#table.analyze()
 table.compute_table(size)
 # #print ("rules= " + str(len(table.correct)) + " safe= " + str(len(table.safe)) + " unsafe= " + str(len(table.unsafe)))
 # # rules= 5 safe= 4 unsafe= 2

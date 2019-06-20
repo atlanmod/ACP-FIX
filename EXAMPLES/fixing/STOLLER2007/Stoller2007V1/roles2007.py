@@ -1,14 +1,12 @@
 # -------------------
-# 6/12/2018
+# 20/6/2019
 # RBAC2 from http://www3.cs.stonybrook.edu/~stoller/ccs2007/
 # -------------------
 # other encoding are possible
 # we add parameters
 # SMER are disjunction rules
-# roles are predicates, herarchies are implications
+# roles are predicates, hierarchies are implications
 # ----------------------
-### With time each predicate take int parameter
-### Fix the 4st unsafe TODO
 
 from Removing import * #@UnusedWildImport
 
@@ -67,13 +65,25 @@ table.add_rule(And(Patient(T, X), PrimaryDoctor(T, X)), False) #8
 table.add_rule(And(Receptionist(T, X), Doctor(T, X)), False) #9
 table.add_rule(And(Nurse(T, X), Doctor(T, X)), False) #10
 #### ---
-start = clock()
+start = process_time()
 size = 8+3
 table.compute_table(size) ### with Improve !
 #print ("rules= " + str(len(table.correct)) + " safe= " + str(len(table.safe)) + " unsafe= " + str(len(table.unsafe)))
 #print(str(table))
 # print (str(table.ordering) + " explicit " + str(table.explicit) + " tauto " + str(table.tautology)) #{5: 0, 6: 1, 7: 2, 0: 3, 1: 4, 2: 5, 3: 6, 4: 7} explicit [8, 9, 10] tauto []
 #print(" analysis time: " + str(floor(clock()-start)))
+
+### ------------
+#### check some un/definedness
+##T1 = Exists(table.variables, And(Doctor(T, X), Not(Nurse(T, X)))) # SAT
+##T1 = Exists(table.variables, And(Doctor(T, X), Not(Nurse(T, X)), Patient(T, X))) # UNSAT
+##T1 = Exists(table.variables, And(Doctor(T, X), Not(Nurse(T, X)), PrimaryDoctor(T, X))) # SAT
+##T1 = Exists(table.variables, And(Doctor(T, X), Not(Nurse(T, X)), Not(PrimaryDoctor(T, X)))) # UNSAT
+##T1 = Exists(table.variables, And(Doctor(T, X), Not(Nurse(T, X)), Not(Receptionist(T, X)))) # SAT
+##T1 = Exists(table.variables, And(Not(Nurse(T, X)), Doctor(T, X), Not(PrimaryDoctor(T, X)), Not(Receptionist(T, X)), Patient(T, X))) # UNSAT
+
+##print(" is " + str(T1) + " defined? " + str(table.check_undefined(T1, size)))
+
 ### use compute_table
 #  ----------- Unsafe -------------- 
 # UNSAFE [1] <[And(Patient(T, X), PrimaryDoctor(T, X))] => False>
@@ -84,17 +94,16 @@ table.compute_table(size) ### with Improve !
 ### first 
 U1 = Exists(table.variables, And(Patient(T, X), PrimaryDoctor(T, X)))
 UB1 = [1] 
-# numbers= [8, 9, 10, 5, 6, 7, 0, 1, 2, 3, 4]
 
-#print(str(table.lookup_complex(U1, UB1, size))) # [8] OK
-table.compare(U1, UB1, size, 0)
+print(str(table.lookup_complex(U1, UB1, size))) # [8] OK
+#table.compare(U1, UB1, size, 0)
 
 ### second
 U2 = Exists(table.variables, And(Not(And(Patient(T, X), PrimaryDoctor(T, X))), And(Receptionist(T, X), Doctor(T, X))))
 UB2 = [0, 1] 
 
 # print(str(table.lookup_complex(U2, UB2, size))) # [9] OK
-table.compare(U2, UB2, size, 1)
+#table.compare(U2, UB2, size, 1)
 
 #### third 
 
@@ -105,6 +114,6 @@ U4 =  Exists(table.variables, And(Not(And(Patient(T, X), PrimaryDoctor(T, X))), 
 UB4 = [0, 0, 0, 1, 1, 1]
 
 # print(str(table.lookup_complex(U4, UB4, size))) # [7] OK
-table.compare(U4, UB4, size, 3)
+#table.compare(U4, UB4, size, 3)
 
 #### this suggest to fix the rule 7 (because also was not necessary in original text)

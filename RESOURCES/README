@@ -1,4 +1,4 @@
-%%%% 30/12/2018
+%%%% 19/6/2019
 %%%% Examples and source code prototype for the removing process
 
 main.pdf is the companion paper with full proofs
@@ -10,4 +10,5 @@ but few changes and corrections have been done
 src/improve and src/removing are new source codes for the removing process
 
 
+TODO commit after tests
 TODO clean up code, remove simplify !!!

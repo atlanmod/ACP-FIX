@@ -1,5 +1,5 @@
 # -------------------
-# 15/10/2018
+# 19/6/2019
 # RBAC2 from http://www3.cs.stonybrook.edu/~stoller/ccs2007/
 # -------------------
 ### without simplification
@@ -8,6 +8,7 @@
 # -----------------
 ### RQ1: avoiding Not(assign) in revoke rules we get conflicting problems 
 ### in conjunction with the assign rules
+### RQ2: not really a correct way to revoke
 
 from Removing import * #@UnusedWildImport
 
@@ -235,12 +236,18 @@ table.add_rule(And(ThirdParty(T, X), revoke(T, X, Y), (P < T), assign(P, X, Y), 
 # --------------------------------------------
 
 # ### ===============
-start = clock()
+start = process_time()
 size =  60 
 table.compute_table(size) 
-table.check(size)
+#table.check(size)
 #print(str(table))
+for r in table.unsafe:
+    print (str(r))
 print ("rules= " + str(len(table.correct)) + " safe= " + str(len(table.safe)) 
-       + " unsafe= " + str(len(table.unsafe)) + " time: " + str(floor(clock()-start))) # + " built= " + str(table.built))
+       + " unsafe= " + str(len(table.unsafe)) + " time: " + str(floor(process_time()-start))) # + " built= " + str(table.built))
 
 
+# UNSAFE [1] <[And(Patient(T, X), PrimaryDoctor(T, X))] => False>
+# UNSAFE [0, 1] <[Not(And(Patient(T, X), PrimaryDoctor(T, X))), And(Receptionist(T, X), Doctor(T, X))] => False>
+# UNSAFE [0, 0, 1] <[Not(And(Patient(T, X), PrimaryDoctor(T, X))), Not(And(Receptionist(T, X), Doctor(T, X))), And(Nurse(T, X), Doctor(T, X))] => False>
+# rules= 57 safe= 20817 unsafe= 3 time: 6327
