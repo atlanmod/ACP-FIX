@@ -31,6 +31,7 @@ Pread = Function('Pread', Subject, Resource, BoolSort())
 Pwrite = Function('Pwrite', Subject, Resource, BoolSort()) 
 Paction = Function('Paction', Subject, Resource, BoolSort()) 
 ### resources 
+## TODO may be to exclusivity relations to add
 conference = Function('conference', Resource, BoolSort()) 
 conferenceInfo = Function('conferenceInfo', Resource, BoolSort()) 
 PcMember = Function('PcMember', Resource, BoolSort()) 

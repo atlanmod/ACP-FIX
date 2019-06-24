@@ -30,6 +30,9 @@ main.pdf is the companion paper with full proofs
 slides.pdf the talk
 
 EXAMPLES/ contains some examples mainly an ARBAC and an ABAC ones
+		ContinueA : ACP example originally in XACML
+		Stoler2007: an healthcare ARBAC policy 
+
 
 src/ contains the same base code than ACP (https://github.com/atlanmod/ACP) which defines the enumerative approach
 but few changes and corrections have been done

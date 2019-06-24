@@ -1,5 +1,5 @@
 # -------------------
-# 20/6/2019
+# 24/6/2019
 # RBAC2 from http://www3.cs.stonybrook.edu/~stoller/ccs2007/
 # -------------------
 # other encoding are possible
@@ -102,7 +102,7 @@ print(str(table.lookup_complex(U1, UB1, size))) # [8] OK
 U2 = Exists(table.variables, And(Not(And(Patient(T, X), PrimaryDoctor(T, X))), And(Receptionist(T, X), Doctor(T, X))))
 UB2 = [0, 1] 
 
-# print(str(table.lookup_complex(U2, UB2, size))) # [9] OK
+print(str(table.lookup_complex(U2, UB2, size))) # [9] OK
 #table.compare(U2, UB2, size, 1)
 
 #### third 

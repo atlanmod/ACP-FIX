@@ -1,5 +1,5 @@
 # -------------------
-# 30/12/2018
+# 24/06/2019
 # test Table ...pour Shaikh2010
 # -------------------
 
@@ -72,18 +72,16 @@ UB0 = [1]
 # numbers= [2, 3, 4, 5, 6, 7, 0, 1]
 # positives= [2] negatives= []
 
-# print(str(table.lookup_complex(U0, UB0, size))) # [2] 
-#print(str(table.naive(U0, size))) # [2] 
-table.compare(U0, UB0, size, 1) 
+print(str(table.lookup_complex(U0, UB0, size))) # [2] 
+#table.compare(U0, UB0, size, 1) 
 
 #### 
 U1 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), Not(rights(A, D)), administrator(A)))
 UB1 = [0, 0, 1]
 # numbers= [2, 3, 4, 5, 6, 7, 0, 1]
 
-# print(str(table.lookup_complex(U1, UB1, size))) # [4] 
-#print(str(table.naive(U1, size))) # [4]
-table.compare(U1, UB1, size, 1) 
+print(str(table.lookup_complex(U1, UB1, size))) # [4] 
+#table.compare(U1, UB1, size, 1) 
 
 #### 
 U2 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), rights(A, D), administrator(A), Not(technician(C)), 
@@ -92,9 +90,8 @@ UB2 = [0, 1, 1, 0, 0, 0]
 # numbers= [2, 3, 4, 5, 6, 7, 0, 1]
 # positives= [3, 4] negatives= [2, 5, 6, 7]
 
-# print(str(table.lookup_complex(U2, UB2, size))) # [3] 
-#print(str(table.naive(U2, size))) # [3] 
-table.compare(U2, UB2, size, 1) 
+print(str(table.lookup_complex(U2, UB2, size))) # [3] 
+#table.compare(U2, UB2, size, 1) 
 
 #### 
 U3 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), rights(A, D), Not(administrator(A)), technician(C), 
@@ -102,9 +99,8 @@ U3 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), righ
 UB3 = [0, 1, 0, 1, 0, 1]
 # numbers= [2, 3, 4, 5, 6, 7, 0, 1]
 
-#print(str(table.lookup_complex(U3, UB3, size))) # [7] 
-#print(str(table.naive(U3, size))) # [7] 
-table.compare(U3, UB3, size, 1) 
+print(str(table.lookup_complex(U3, UB3, size))) # [7] 
+#table.compare(U3, UB3, size, 1) 
 
 #### 
 U4 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), rights(A, D), Not(administrator(A)), technician(C), 
@@ -112,9 +108,8 @@ U4 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), righ
 UB4 = [0, 1, 0, 1, 0, 0]
 # numbers= [2, 3, 4, 5, 6, 7, 0, 1]
 
-#print(str(table.lookup_complex3(U4, UB4, size))) # [3] 
-#print(str(table.naive(U4, size))) # [3] 
-table.compare(U4, UB4, size, 1) 
+print(str(table.lookup_complex(U4, UB4, size))) # [3] 
+#table.compare(U4, UB4, size, 1) 
 
 #### 
 U5 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), rights(A, D), Not(administrator(A)), Not(technician(C)), 
@@ -122,9 +117,8 @@ U5 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), righ
 UB5 = [0, 1, 0, 0, 0, 1]
 # numbers= [2, 3, 4, 5, 6, 7, 0, 1]
 
-#print(str(table.lookup_complex(U5, UB5, size))) # [7] 
-#print(str(table.naive(U5, size))) # [7] 
-table.compare(U5, UB5, size, 1) 
+print(str(table.lookup_complex(U5, UB5, size))) # [7] 
+#table.compare(U5, UB5, size, 1) 
 
 #### 
 U6 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), rights(A, D), Not(administrator(A)), Not(technician(C)), 
@@ -132,9 +126,8 @@ U6 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), righ
 UB6 = [0, 1, 0, 0, 0, 0]
 # numbers= [2, 3, 4, 5, 6, 7, 0, 1]
 
-#print(str(table.lookup_complex(U6, UB6, size))) # [3] 
-#print(str(table.naive(U6, size))) # [3] 
-table.compare(U6, UB6, size, 1) 
+print(str(table.lookup_complex(U6, UB6, size))) # [3] 
+#table.compare(U6, UB6, size, 1) 
 
 #### 
 U7 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), Not(rights(A, D)), Not(administrator(A)), technician(C),
@@ -142,9 +135,8 @@ U7 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), Not(
 UB7 = [0, 0, 0, 1, 0, 1]
 # numbers= [2, 3, 4, 5, 6, 7, 0, 1]
 
-#print(str(table.lookup_complex(U7, UB7, size))) # [7]  
-#print(str(table.naive(U7, size))) # [7] 
-table.compare(U7, UB7, size, 1) 
+print(str(table.lookup_complex(U7, UB7, size))) # [7]  
+#table.compare(U7, UB7, size, 1) 
 
 #### 
 U8 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), Not(rights(A, D)), Not(administrator(A)), Not(technician(C)), 
@@ -152,6 +144,5 @@ U8 = Exists(table.variables, And(Not(And(administrator(A), technician(A))), Not(
 UB8 = [0, 0, 0, 0, 0, 1]
 # numbers= [2, 3, 4, 5, 6, 7, 0, 1]
 
-#print(str(table.lookup_complex(U8, UB8, size))) # [7] 
-#print(str(table.naive(U8, size))) # [7] 
-table.compare(U8, UB8, size, 1) 
+print(str(table.lookup_complex(U8, UB8, size))) # [7] 
+#table.compare(U8, UB8, size, 1) 

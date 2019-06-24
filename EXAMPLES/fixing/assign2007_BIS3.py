@@ -1,5 +1,5 @@
 # -------------------
-# 3/12/2018
+# 24/06/2019
 # RBAC2 from http://www3.cs.stonybrook.edu/~stoller/ccs2007/
 # -------------------
 # see healthcare2007.py
@@ -7,8 +7,6 @@
 ### test simplification
 ### not really useful as fix but testing simplification
 ### -------------
-
-### TODO attention au existential universal problem
 
 from time import * #@UnusedWildImport
 from Removing import * #@UnusedWildImport
@@ -105,13 +103,13 @@ table.add_rule(And(MedicalManager(T, X), Nurse(T, Y), assign(T, X, Y)), MedicalT
 table.add_rule(And(Manager(T, X), assign(T, X, Y)), MedicalTeam(T, Y)) #12
 # --------------------------------------------
 
-start = clock()
+start = process_time()
 size = 13
 # all = range(size)
 table.compute_table(size) ### needed for mapping
 # print ("rules= " + str(len(table.correct)) + " safe= " + str(len(table.safe)) + " unsafe= " + str(len(table.unsafe)))
-# print(" analysis time: " + str(floor(clock()-start)))
-# print(str(table))
+# print(" analysis time: " + str(floor(process_time()-start)))
+print(str(table))
 # print("ordering= " + str(table.ordering) + " explicit = " + str(table.explicit) + " tauto = " + str(table.tautology))
 # ordering= {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 11: 11, 12: 12} explicit = [] tauto = []
 # rules= 13 safe= 91 unsafe= 3  analysis time: 9
@@ -130,9 +128,8 @@ U0 = Exists(table.variables, And(Not(And(Doctor(T, X), assign(T, X, Y))), Not(An
                                   And(Patient(T, X), assign(T, X, Y)), Not(And(Patient(T, X), Doctor(T, Y), assign(T, X, Y)))))
 B0= [0, 0, 1, 1, 1, 1, 1, 0]
  
-#print(str(table.lookup_complex(U0, B0, size))) #[5] is minimal
-#print(str(table.naive(U0, B0, size))) #[5]
-table.compare(U0, B0, size, 0) 
+print(str(table.lookup_complex(U0, B0, size))) #[5] is minimal
+#table.compare(U0, B0, size, 0) 
 
 #### second
 U1 = Exists(table.variables, And(Not(And(Doctor(T, X), assign(T, X, Y))), Not(And(Doctor(T, X), Doctor(T, Y), assign(T, X, Y))), 
@@ -142,9 +139,8 @@ U1 = Exists(table.variables, And(Not(And(Doctor(T, X), assign(T, X, Y))), Not(An
                                  And(MedicalManager(T, X), Nurse(T, Y), assign(T, X, Y))))
 B1 = [0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1]
 
-# print(str(table.lookup_complex(U1, B1, size))) # [5, 8]
-# print(str(table.naive(U1, size))) # [5, 8]
-table.compare(U1, B1, size, 1)
+print(str(table.lookup_complex(U1, B1, size))) # [5]
+#table.compare(U1, B1, size, 1)
 
 #### third
 U2 = Exists(table.variables, And(Not(And(Doctor(T, X), assign(T, X, Y))), Not(And(Doctor(T, X), Doctor(T, Y), assign(T, X, Y))), 
@@ -156,9 +152,8 @@ B2 = [0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1]
 # numbers= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 # positives= [2, 3, 4, 5, 11] negatives= [0, 1, 6, 7, 8, 9, 10]
 
-#print(str(table.lookup_complex(U2, B2, size))) # [3, 5]
-#print(str(table.naive(U2, size))) # U2=[5] 
+print(str(table.lookup_complex(U2, B2, size))) # [5]
+#table.compare(U2, B2, size, 2)
 
-table.compare(U2, B2, size, 2)
 ### ==================
 

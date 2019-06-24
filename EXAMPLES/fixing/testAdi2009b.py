@@ -1,9 +1,8 @@
 # -------------------
-# 29/12/2018
+# 24/06/2019
 # Test Adi2009 
 # -------------------
 
-#from Sorting import * #@UnusedWildImport
 from Removing import * #@UnusedWildImport
 from time import * #@UnusedWildImport
 
@@ -71,12 +70,6 @@ table.compute_table(size)
 # 0,1 0,2 are minimal for the first problem
 # 2 and 4 for the second
 ### -----
-### ----- glue_unsafe_simplified
-# Simplified condition for [1, 1, 1] -> [And(nurse(h), doctor(h), Not(sameward(h, p)))]
-# Simplified condition for [0, 0, 1, 0, 1] -> [And(nurse(h), Not(doctor(h)), Not(sameward(h, p)), chief(h))]
-# Unsafe simplified= 2 conflict problems 
-# Or(And(nurse(h), Not(sameward(h, p)), chief(h)),
-#    And(nurse(h), doctor(h), Not(sameward(h, p))))
 ### ----------
 
 #### ===================== TEST1 incomplete case
