@@ -69,7 +69,7 @@ start = process_time()
 size = 8+3
 table.compute_table(size) ### with Improve !
 #print ("rules= " + str(len(table.correct)) + " safe= " + str(len(table.safe)) + " unsafe= " + str(len(table.unsafe)))
-#print(str(table))
+print(str(table))
 # print (str(table.ordering) + " explicit " + str(table.explicit) + " tauto " + str(table.tautology)) #{5: 0, 6: 1, 7: 2, 0: 3, 1: 4, 2: 5, 3: 6, 4: 7} explicit [8, 9, 10] tauto []
 #print(" analysis time: " + str(floor(clock()-start)))
 
@@ -113,7 +113,7 @@ U4 =  Exists(table.variables, And(Not(And(Patient(T, X), PrimaryDoctor(T, X))), 
                                   Not(And(Nurse(T, X), Doctor(T, X))), Patient(T, X), Doctor(T, X)))
 UB4 = [0, 0, 0, 1, 1, 1]
 
-# print(str(table.lookup_complex(U4, UB4, size))) # [7] OK
+print(str(table.lookup_complex(U4, UB4, size))) # [7] OK
 #table.compare(U4, UB4, size, 3)
 
 #### this suggest to fix the rule 7 (because also was not necessary in original text)

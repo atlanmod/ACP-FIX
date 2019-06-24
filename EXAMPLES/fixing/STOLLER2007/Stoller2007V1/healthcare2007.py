@@ -10,6 +10,8 @@
 ### in conjunction with the assign rules
 ### RQ2: not really a correct way to revoke
 
+# TODO test removing unneessary 
+
 from Removing import * #@UnusedWildImport
 
 # --------------------------
@@ -86,9 +88,11 @@ table.add_rule(Receptionist(T, X), Employee(T, X)) #E
 table.add_rule(MedicalManager(T, X), Employee(T, X))
 table.add_rule(Manager(T, X), Employee(T, X))
 # ### qualified as unnecessary 
-table.add_rule(Patient(T, X), PatientWithTPC(T, X))  #A 
+# TODO
+#table.add_rule(Patient(T, X), PatientWithTPC(T, X))  #A 
 # ### qualified as unnecessary 
-table.add_rule(Doctor(T, X), ReferredDoctor(T, X))  #B  
+# TODO
+# table.add_rule(Doctor(T, X), ReferredDoctor(T, X))  #B  
 # ### qualified as unnecessary 
 ### table.add_rule(Doctor(T, X), PrimaryDoctor(T, X))   #C remove it
 # # ## mutual exclusion of roles (3)
@@ -196,6 +200,7 @@ table.add_rule(And(Manager(T, X), assign(T, X, Y)), MedicalTeam(T+1, Y)) #13
 # the Patient role.  this reflects the policy that a patient must be
 # discharged from the facility by a doctor.  or, we could make the patient
 # role irrevocable.
+### BUT not a suitable specification
 
 # **************************************** # revoke  (13)
 # assign(Doctor, true, ThirdParty)
@@ -237,7 +242,7 @@ table.add_rule(And(ThirdParty(T, X), revoke(T, X, Y), (P < T), assign(P, X, Y), 
 
 # ### ===============
 start = process_time()
-size =  60 
+size =  58 # with no unecessary # 60 with two unnecessary
 table.compute_table(size) 
 #table.check(size)
 #print(str(table))
@@ -246,8 +251,13 @@ for r in table.unsafe:
 print ("rules= " + str(len(table.correct)) + " safe= " + str(len(table.safe)) 
        + " unsafe= " + str(len(table.unsafe)) + " time: " + str(floor(process_time()-start))) # + " built= " + str(table.built))
 
-
+#### # 60 with two unnecessary
 # UNSAFE [1] <[And(Patient(T, X), PrimaryDoctor(T, X))] => False>
 # UNSAFE [0, 1] <[Not(And(Patient(T, X), PrimaryDoctor(T, X))), And(Receptionist(T, X), Doctor(T, X))] => False>
 # UNSAFE [0, 0, 1] <[Not(And(Patient(T, X), PrimaryDoctor(T, X))), Not(And(Receptionist(T, X), Doctor(T, X))), And(Nurse(T, X), Doctor(T, X))] => False>
 # rules= 57 safe= 20817 unsafe= 3 time: 6327
+
+### 58 # with no unecessary
+### same unsafe 
+##rules= 55 safe= 20493 unsafe= 3 time: 6087
+
