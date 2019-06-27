@@ -1,5 +1,5 @@
 # -------------------
-# 19/6/2019
+# 25/6/2019
 # RBAC2 from http://www3.cs.stonybrook.edu/~stoller/ccs2007/
 # -------------------
 ### without simplification
@@ -9,8 +9,6 @@
 ### RQ1: avoiding Not(assign) in revoke rules we get conflicting problems 
 ### in conjunction with the assign rules
 ### RQ2: not really a correct way to revoke
-
-# TODO test removing unneessary 
 
 from Removing import * #@UnusedWildImport
 
@@ -88,10 +86,8 @@ table.add_rule(Receptionist(T, X), Employee(T, X)) #E
 table.add_rule(MedicalManager(T, X), Employee(T, X))
 table.add_rule(Manager(T, X), Employee(T, X))
 # ### qualified as unnecessary 
-# TODO
 #table.add_rule(Patient(T, X), PatientWithTPC(T, X))  #A 
 # ### qualified as unnecessary 
-# TODO
 # table.add_rule(Doctor(T, X), ReferredDoctor(T, X))  #B  
 # ### qualified as unnecessary 
 ### table.add_rule(Doctor(T, X), PrimaryDoctor(T, X))   #C remove it
@@ -202,7 +198,7 @@ table.add_rule(And(Manager(T, X), assign(T, X, Y)), MedicalTeam(T+1, Y)) #13
 # role irrevocable.
 ### BUT not a suitable specification
 
-# **************************************** # revoke  (13)
+# **************************************** # revoke  (13) this set is not correct
 # assign(Doctor, true, ThirdParty)
 table.add_rule(And(Doctor(T, X), revoke(T, X, Y), (P < T), assign(P, X, Y), Not(assign(T, X, Y))), Not(ThirdParty(T+1, Y)))
 ### RQ1: generate conflicts with assign rules
@@ -233,7 +229,7 @@ table.add_rule(And(Patient(T, X), revoke(T, X, Y), (P < T), assign(P, X, Y), Not
 # 
 # assign(Receptionist, true, Patient)
 ### table.add_rule(And(Receptionist(T, X), revoke(T, X, Y)), Patient(T, Y))
-### the newone ?
+### the newone 
 table.add_rule(And(Doctor(T, X), Not(Receptionist(T, X)), revoke(T, X, Y), (P < T), assign(P, X, Y), Not(assign(T, X, Y))), Patient(T+1, Y))
 # 
 # assign(ThirdParty, Patient, PatientWithTPC)

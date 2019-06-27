@@ -1,5 +1,5 @@
 # -------------------
-# 18/6/2019
+# 27/6/2019
 # RBAC2 from http://www3.cs.stonybrook.edu/~stoller/ccs2007/
 # -------------------
 ### without simplification
@@ -8,8 +8,6 @@
 ### V4 simpler rules for revoke and changed for assign 
 ### because previous one is not really correct
 # -----------------
-
-# TODO too long
 
 ### ------
 from Removing import * #@UnusedWildImport
@@ -178,97 +176,97 @@ table.add_rule(And(Doctor(T, X), Not(Receptionist(T, X)), Patient(T, Y), revoke(
 # # --------------------------------------------
 
 #### not checked here
-# ### ------------------------- (12+) relation on resources ? (6*13)
-# table.add_rule(And(OldMedicalRecords(T, R), RecentMedicalRecords(T, R)), False)
-# table.add_rule(And(OldMedicalRecords(T, R), PrivateNotes(T, R)), False)
-# table.add_rule(And(OldMedicalRecords(T, R), Prescriptions(T, R)), False)
-# table.add_rule(And(OldMedicalRecords(T, R), PatientPersonalInfo(T, R)), False) 
-# table.add_rule(And(OldMedicalRecords(T, R), PatientFinancialInfo(T, R)), False)
-# table.add_rule(And(OldMedicalRecords(T, R), PatientMedicalInfo(T, R)), False)
-# table.add_rule(And(OldMedicalRecords(T, R), CarePlan(T, R)), False)
-# table.add_rule(And(OldMedicalRecords(T, R), Appointment(T, R)), False)
-# table.add_rule(And(OldMedicalRecords(T, R), ProgressNotes(T, R)), False)
-# table.add_rule(And(OldMedicalRecords(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
-# table.add_rule(And(OldMedicalRecords(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(OldMedicalRecords(T, R), Bills(T, R)), False) 
-# 
-# table.add_rule(And(RecentMedicalRecords(T, R), PrivateNotes(T, R)), False)
-# table.add_rule(And(RecentMedicalRecords(T, R), Prescriptions(T, R)), False)
-# table.add_rule(And(RecentMedicalRecords(T, R), PatientPersonalInfo(T, R)), False) 
-# table.add_rule(And(RecentMedicalRecords(T, R), PatientFinancialInfo(T, R)), False)
-# table.add_rule(And(RecentMedicalRecords(T, R), PatientMedicalInfo(T, R)), False)
-# table.add_rule(And(RecentMedicalRecords(T, R), CarePlan(T, R)), False)
-# table.add_rule(And(RecentMedicalRecords(T, R), Appointment(T, R)), False)
-# table.add_rule(And(RecentMedicalRecords(T, R), ProgressNotes(T, R)), False)
-# table.add_rule(And(RecentMedicalRecords(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
-# table.add_rule(And(RecentMedicalRecords(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(RecentMedicalRecords(T, R), Bills(T, R)), False) 
-# 
-# table.add_rule(And(PrivateNotes(T, R), Prescriptions(T, R)), False)
-# table.add_rule(And(PrivateNotes(T, R), PatientPersonalInfo(T, R)), False) 
-# table.add_rule(And(PrivateNotes(T, R), PatientFinancialInfo(T, R)), False)
-# table.add_rule(And(PrivateNotes(T, R), PatientMedicalInfo(T, R)), False)
-# table.add_rule(And(PrivateNotes(T, R), CarePlan(T, R)), False)
-# table.add_rule(And(PrivateNotes(T, R), Appointment(T, R)), False)
-# table.add_rule(And(PrivateNotes(T, R), ProgressNotes(T, R)), False)
-# table.add_rule(And(PrivateNotes(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
-# table.add_rule(And(PrivateNotes(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(PrivateNotes(T, R), Bills(T, R)), False) 
-# 
-# table.add_rule(And(Prescriptions(T, R), PatientPersonalInfo(T, R)), False) 
-# table.add_rule(And(Prescriptions(T, R), PatientFinancialInfo(T, R)), False)
-# table.add_rule(And(Prescriptions(T, R), PatientMedicalInfo(T, R)), False)
-# table.add_rule(And(Prescriptions(T, R), CarePlan(T, R)), False)
-# table.add_rule(And(Prescriptions(T, R), Appointment(T, R)), False)
-# table.add_rule(And(Prescriptions(T, R), ProgressNotes(T, R)), False)
-# table.add_rule(And(Prescriptions(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
-# table.add_rule(And(Prescriptions(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(Prescriptions(T, R), Bills(T, R)), False) 
-# 
-# table.add_rule(And(PatientPersonalInfo(T, R), PatientFinancialInfo(T, R)), False)
-# table.add_rule(And(PatientPersonalInfo(T, R), PatientMedicalInfo(T, R)), False)
-# table.add_rule(And(PatientPersonalInfo(T, R), CarePlan(T, R)), False)
-# table.add_rule(And(PatientPersonalInfo(T, R), Appointment(T, R)), False)
-# table.add_rule(And(PatientPersonalInfo(T, R), ProgressNotes(T, R)), False)
-# table.add_rule(And(PatientPersonalInfo(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
-# table.add_rule(And(PatientPersonalInfo(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(PatientPersonalInfo(T, R), Bills(T, R)), False) 
-# 
-# table.add_rule(And(PatientFinancialInfo(T, R), PatientMedicalInfo(T, R)), False)
-# table.add_rule(And(PatientFinancialInfo(T, R), CarePlan(T, R)), False)
-# table.add_rule(And(PatientFinancialInfo(T, R), Appointment(T, R)), False)
-# table.add_rule(And(PatientFinancialInfo(T, R), ProgressNotes(T, R)), False)
-# table.add_rule(And(PatientFinancialInfo(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
-# table.add_rule(And(PatientFinancialInfo(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(PatientFinancialInfo(T, R), Bills(T, R)), False) 
-# 
-# table.add_rule(And(PatientMedicalInfo(T, R), CarePlan(T, R)), False)
-# table.add_rule(And(PatientMedicalInfo(T, R), Appointment(T, R)), False)
-# table.add_rule(And(PatientMedicalInfo(T, R), ProgressNotes(T, R)), False)
-# table.add_rule(And(PatientMedicalInfo(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
-# table.add_rule(And(PatientMedicalInfo(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(PatientMedicalInfo(T, R), Bills(T, R)), False)
-# 
-# table.add_rule(And(CarePlan(T, R), Appointment(T, R)), False)
-# table.add_rule(And(CarePlan(T, R), ProgressNotes(T, R)), False)
-# table.add_rule(And(CarePlan(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
-# table.add_rule(And(CarePlan(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(CarePlan(T, R), Bills(T, R)), False)
-# 
-# table.add_rule(And(Appointment(T, R), ProgressNotes(T, R)), False)
-# table.add_rule(And(Appointment(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
-# table.add_rule(And(Appointment(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(Appointment(T, R), Bills(T, R)), False)
-# 
-# table.add_rule(And(ProgressNotes(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
-# table.add_rule(And(ProgressNotes(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(ProgressNotes(T, R), Bills(T, R)), False)
-# 
-# table.add_rule(And(MedicalRecordsWithThirdPartyInfo(T, R), LegalAgreement(T, R)), False)
-# table.add_rule(And(MedicalRecordsWithThirdPartyInfo(T, R), Bills(T, R)), False)
-# 
-# table.add_rule(And(LegalAgreement(T, R), Bills(T, R)), False)
-# ## -------
+### ------------------------- (12+) relation on resources ? (6*13)
+table.add_rule(And(OldMedicalRecords(T, R), RecentMedicalRecords(T, R)), False)
+table.add_rule(And(OldMedicalRecords(T, R), PrivateNotes(T, R)), False)
+table.add_rule(And(OldMedicalRecords(T, R), Prescriptions(T, R)), False)
+table.add_rule(And(OldMedicalRecords(T, R), PatientPersonalInfo(T, R)), False) 
+table.add_rule(And(OldMedicalRecords(T, R), PatientFinancialInfo(T, R)), False)
+table.add_rule(And(OldMedicalRecords(T, R), PatientMedicalInfo(T, R)), False)
+table.add_rule(And(OldMedicalRecords(T, R), CarePlan(T, R)), False)
+table.add_rule(And(OldMedicalRecords(T, R), Appointment(T, R)), False)
+table.add_rule(And(OldMedicalRecords(T, R), ProgressNotes(T, R)), False)
+table.add_rule(And(OldMedicalRecords(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
+table.add_rule(And(OldMedicalRecords(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(OldMedicalRecords(T, R), Bills(T, R)), False) 
+ 
+table.add_rule(And(RecentMedicalRecords(T, R), PrivateNotes(T, R)), False)
+table.add_rule(And(RecentMedicalRecords(T, R), Prescriptions(T, R)), False)
+table.add_rule(And(RecentMedicalRecords(T, R), PatientPersonalInfo(T, R)), False) 
+table.add_rule(And(RecentMedicalRecords(T, R), PatientFinancialInfo(T, R)), False)
+table.add_rule(And(RecentMedicalRecords(T, R), PatientMedicalInfo(T, R)), False)
+table.add_rule(And(RecentMedicalRecords(T, R), CarePlan(T, R)), False)
+table.add_rule(And(RecentMedicalRecords(T, R), Appointment(T, R)), False)
+table.add_rule(And(RecentMedicalRecords(T, R), ProgressNotes(T, R)), False)
+table.add_rule(And(RecentMedicalRecords(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
+table.add_rule(And(RecentMedicalRecords(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(RecentMedicalRecords(T, R), Bills(T, R)), False) 
+ 
+table.add_rule(And(PrivateNotes(T, R), Prescriptions(T, R)), False)
+table.add_rule(And(PrivateNotes(T, R), PatientPersonalInfo(T, R)), False) 
+table.add_rule(And(PrivateNotes(T, R), PatientFinancialInfo(T, R)), False)
+table.add_rule(And(PrivateNotes(T, R), PatientMedicalInfo(T, R)), False)
+table.add_rule(And(PrivateNotes(T, R), CarePlan(T, R)), False)
+table.add_rule(And(PrivateNotes(T, R), Appointment(T, R)), False)
+table.add_rule(And(PrivateNotes(T, R), ProgressNotes(T, R)), False)
+table.add_rule(And(PrivateNotes(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
+table.add_rule(And(PrivateNotes(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(PrivateNotes(T, R), Bills(T, R)), False) 
+ 
+table.add_rule(And(Prescriptions(T, R), PatientPersonalInfo(T, R)), False) 
+table.add_rule(And(Prescriptions(T, R), PatientFinancialInfo(T, R)), False)
+table.add_rule(And(Prescriptions(T, R), PatientMedicalInfo(T, R)), False)
+table.add_rule(And(Prescriptions(T, R), CarePlan(T, R)), False)
+table.add_rule(And(Prescriptions(T, R), Appointment(T, R)), False)
+table.add_rule(And(Prescriptions(T, R), ProgressNotes(T, R)), False)
+table.add_rule(And(Prescriptions(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
+table.add_rule(And(Prescriptions(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(Prescriptions(T, R), Bills(T, R)), False) 
+ 
+table.add_rule(And(PatientPersonalInfo(T, R), PatientFinancialInfo(T, R)), False)
+table.add_rule(And(PatientPersonalInfo(T, R), PatientMedicalInfo(T, R)), False)
+table.add_rule(And(PatientPersonalInfo(T, R), CarePlan(T, R)), False)
+table.add_rule(And(PatientPersonalInfo(T, R), Appointment(T, R)), False)
+table.add_rule(And(PatientPersonalInfo(T, R), ProgressNotes(T, R)), False)
+table.add_rule(And(PatientPersonalInfo(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
+table.add_rule(And(PatientPersonalInfo(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(PatientPersonalInfo(T, R), Bills(T, R)), False) 
+ 
+table.add_rule(And(PatientFinancialInfo(T, R), PatientMedicalInfo(T, R)), False)
+table.add_rule(And(PatientFinancialInfo(T, R), CarePlan(T, R)), False)
+table.add_rule(And(PatientFinancialInfo(T, R), Appointment(T, R)), False)
+table.add_rule(And(PatientFinancialInfo(T, R), ProgressNotes(T, R)), False)
+table.add_rule(And(PatientFinancialInfo(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
+table.add_rule(And(PatientFinancialInfo(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(PatientFinancialInfo(T, R), Bills(T, R)), False) 
+ 
+table.add_rule(And(PatientMedicalInfo(T, R), CarePlan(T, R)), False)
+table.add_rule(And(PatientMedicalInfo(T, R), Appointment(T, R)), False)
+table.add_rule(And(PatientMedicalInfo(T, R), ProgressNotes(T, R)), False)
+table.add_rule(And(PatientMedicalInfo(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
+table.add_rule(And(PatientMedicalInfo(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(PatientMedicalInfo(T, R), Bills(T, R)), False)
+ 
+table.add_rule(And(CarePlan(T, R), Appointment(T, R)), False)
+table.add_rule(And(CarePlan(T, R), ProgressNotes(T, R)), False)
+table.add_rule(And(CarePlan(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
+table.add_rule(And(CarePlan(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(CarePlan(T, R), Bills(T, R)), False)
+ 
+table.add_rule(And(Appointment(T, R), ProgressNotes(T, R)), False)
+table.add_rule(And(Appointment(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
+table.add_rule(And(Appointment(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(Appointment(T, R), Bills(T, R)), False)
+ 
+table.add_rule(And(ProgressNotes(T, R), MedicalRecordsWithThirdPartyInfo(T, R)), False)
+table.add_rule(And(ProgressNotes(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(ProgressNotes(T, R), Bills(T, R)), False)
+ 
+table.add_rule(And(MedicalRecordsWithThirdPartyInfo(T, R), LegalAgreement(T, R)), False)
+table.add_rule(And(MedicalRecordsWithThirdPartyInfo(T, R), Bills(T, R)), False)
+ 
+table.add_rule(And(LegalAgreement(T, R), Bills(T, R)), False)
+## -------
    
 #======================================analysis
 #========= isolation TODO roles permission no change
@@ -303,10 +301,14 @@ table.add_rule(And(Doctor(T, X), Not(Receptionist(T, X)), Patient(T, Y), revoke(
 # rules= 30 safe= 1050 unsafe= 4 time: 260
 #========= roles+assignments+revocations+permissions
 ### size = 10+13+11+24
-### 48 rules after one night 
+### 48 rules after one night ...
+#======== all+exclusivity
+### size = 10+13+11+24+78 
+### rules= 54 safe= 12123 unsafe= 82 time: 8517
+### all are explicit unsafe 
 ## --
 start = process_time()
-size = 10+13+11+24
+size = 10+13+11+24+78 # TODO
 table.compute_table(size) 
 #table.check(size)
 #print(str(table))

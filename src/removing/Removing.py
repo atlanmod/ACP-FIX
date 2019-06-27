@@ -74,7 +74,8 @@ class Removing(Improve):
     # naive lookup for a minimal solution
     # bottom up enumeration of rule combinations 
     # test all combination on R_~F
-    def naive(self, U, negatives, size):
+    # TODO see assignV4 ?
+    def naive(self, U, size):
         #print(" ---------- naive -------------")
         #  maximal selection
         selection = range(size)
